@@ -1,6 +1,207 @@
+$dark-color: rgb(22, 24, 29);
+$white-color: rgb(255,255,255);
+$t: 16s;
+
 @font-face {
 	font-family: "MontserratRegular";
 	src: url("../fonts/MontserratRegular.otf") format("opentype"),
   		url("../fonts/MontserratRegular.ttf") format("truetype");
   	font-weight: normal;
 }
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 10px;
+}
+body {
+	font-family: MontserratRegular;
+	background-color: $dark-color;
+	min-height:100vh;
+	margin:0;
+}
+.wrapper {
+	background-color: inherit;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding:0;
+}
+.header {
+	width: 100%;
+	position: fixed;
+    top: 0;
+    left:0;
+    z-index: 999;
+    border-bottom: 0.1rem solid darken($white-color, 50%);
+    padding: 2rem;
+}
+main {
+	width: 100%;
+	padding-top: 4rem;
+}
+%string {
+	display: flex;
+	flex-direction:row;
+	position:absolute;
+	left: 3rem;
+}
+%anim-letter {
+	animation-name: letter, clear;
+	animation-timing-function: linear, linear;
+	animation-iteration-count: infinite, infinite;
+	animation-duration: $t, $t; 	
+}
+%img {
+	margin: 0.5rem;
+	display: inline-flex;
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	width: 12rem;
+	transform: translateY(80%);
+	height: 16rem;
+	animation-name: image;
+	animation-duration: 16s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+}
+.container {
+	width:50%;
+	position: absolute;
+	right:0;
+	min-height:100vh;
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+	justify-content: center;
+	padding-top: 3rem;
+	height:3.5rem;
+	overflow: hidden;
+	.text {
+		font-size: 3rem;
+		width: auto;
+		padding-bottom:0.7rem;
+		color: darken($white-color, 20%);
+		display: flex;
+		flex-direction:row;
+		flex-wrap: nowrap;
+		border-bottom: 0.1rem solid darken($white-color, 50%);
+		position: relative;
+		&__icon {		
+		    width: 0;
+		    height: 2.7rem;
+		    display: inline-flex;
+		    margin-right: 2.2rem;
+		}
+		.cursor {
+			position: absolute;
+			height: 3rem;
+			width:0.2rem;
+			background-color: darken($white-color, 50%);
+			left: 3rem;
+			animation-name: cursor, blink;
+			animation-timing-function: steps(1, end), linear;
+			animation-duration: 4s, 8s;
+			animation-direction: alternate, alternate;;
+			animation-iteration-count: infinite, infinite;
+			animation-delay: 0s, 3.5s;
+		}
+		&__first {
+			@extend %string;
+			span {
+				display: flex;
+				flex-direction:row;
+				flex-wrap: nowrap;
+				&:first-child {
+					p {
+						@extend %anim-letter;
+					}	
+				}
+				&:last-child {
+					p {
+						@extend %anim-letter;
+					}	
+				}
+			}
+
+		}
+		&__second {
+			/*visibility:hidden;*/
+		}
+		p {
+			visibility:hidden;
+			display: inline-block;
+			margin: 0;
+			&:nth-of-type(4) {
+				margin-right: 2rem;
+			}	
+		}
+	}
+	.images {
+		max-width: 60rem;
+		height: 60rem;	
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding-top:2rem;
+		margin-top:3rem;
+		overflow:hidden;
+		& > div {
+			display:flex;
+			flex-wrap: nowrap;
+			position:relative;
+			height: 40rem;
+			&:last-child {
+				margin-top: -40rem;
+			}
+		}
+		@for $j from 1 through 8 {
+			.images__#{$j} {
+				@extend %img;
+				background-image: url(../images/#{$j}.jpg);
+			}
+		}
+		@each $n in 1, 2, 4, 5, 6, 8 {
+			.images__#{$n} {
+				left: 15rem * ($n - 1);
+
+			}		
+		}
+		@each $n in 3, 7 {
+			.images__#{$n} {
+				background-size: 100% auto;
+				position:absolute;
+				left: calc((100% - 39rem)/ 2 + 13rem);
+				top: 19rem;
+			}
+		}
+		@each $n in 2, 6 {
+			.images__#{$n} {
+				background-size: 100% auto;
+				position: relative;
+				left: 0;
+				top: 1rem;
+			}
+		}
+		@each $n in 1, 5 {
+			.images__#{$n} {
+				background-size: 100% auto ;
+				position: relative;				
+				left: 0;				
+				top:  10rem;
+				
+			}
+		}
+		@each $n in 4, 8 {
+			.images__#{$n} {
+				background-size: auto 100%;
+				position: relative;
+				top: 7rem;
+				left: 0;
+			}
+		}
+	}
+}
+
