@@ -43,9 +43,9 @@
 			    	&:last-child {
 			    		p:nth-child(#{$i}) {
 			    			@if $i == 1 {
-			    				animation-delay: 10s + 0.4s, 12s + 1.2s;
+			    				animation-delay: 10s + 0.4s, 12s + 1.6s;
 			    			} @else if $i == 2 {
-			    				animation-delay: 10s + 0.4s, 12s + 1.2s;
+			    				animation-delay: 10s + 0.4s, 12s + 1.6s;
 			    			}
 			    			@else {
 			    				animation-delay: 10s + 0.4s * ($i - 1), 12s + 0.4s*(6 - $i);
