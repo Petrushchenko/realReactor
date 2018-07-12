@@ -1,6 +1,7 @@
 $dark-color: rgb(22, 24, 29);
 $white-color: rgb(255,255,255);
 $t: 16s;
+$m: 32s;
 
 @font-face {
 	font-family: "MontserratRegular";
@@ -64,27 +65,26 @@ main {
 	width: 12rem;
 	transform: translateY(80%);
 	height: 16rem;
-	animation-name: image;
-	animation-duration: 16s;
+	animation-name: image, img-big;
+	animation-duration: $t, $m;
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
-
+	animation-play-state: ranning, paused;
 }
 .container {
 	width:50%;
 	position: absolute;
 	right:0;
-	min-height:100vh;
+	height: calc(100vh - 4rem);
 	display: flex;
 	flex-direction:column;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
 	padding-top: 3rem;
-	height:3.5rem;
 	overflow: hidden;
 	.text {
 		font-size: 3rem;
-		width: 60%;
+		width: 22rem;
 		padding-bottom:1rem;
 		color: darken($white-color, 20%);
 		display: flex;
@@ -159,22 +159,25 @@ main {
 		
 	}
 	.images {
-		max-width: 60rem;
-		height: 60rem;	
+
+		max-height: 90%;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
-		padding-top:2rem;
-		margin-top:3rem;
+		padding-top:5rem;
+		background-image: url(../images/Oval.png);
+		background-position: 100% 0%;
+		background-size: cover;
+		background-repeat:no-repeat;
 		& > div {
 			display:flex;
 			flex-wrap: nowrap;
 			position:relative;
 			z-index:0;
-			height: 48rem;
+			height: 40rem;
 			&:last-child {
-				margin-top: -48rem;
+				margin-top: -40rem;
 			}
 		}
 		@for $j from 1 through 8 {

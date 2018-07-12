@@ -160,6 +160,38 @@
 	
 }
  
-                
+@keyframes big-img {
+	0% {
+		opacity: 1;
+		transform: translateY(100%);
+		z-index: 10;
+	}
+    3% {
+		opacity: 1;
+		transform: none;
+	}
+	25% {
+		z-index: 10;
+		opacity: 1;
+	}
+	26% {
+		z-index: -10;
+		opacity:1;
+	}
+	28% {
+		opacity:0;
+	}
+	50% {z-index: -10;
+		
+		opacity: 0;
+	}
+	51% {
+		opacity: 0;
+	}
+	100% {
+		opacity:0;
+		z-index: -10;
+	}
+}                
 
             
