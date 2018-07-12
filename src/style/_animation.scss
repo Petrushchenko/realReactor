@@ -1,5 +1,4 @@
 
-
 @keyframes cursor {
   0% {
     left: 3rem;
@@ -36,17 +35,30 @@
     left: 3rem;
   }  
 }
+@for $i from 1 through 5 {
+	.container {
+		.text {
+			&__second {
+				span {
+			    	&:last-child {
+			    		p:nth-child(#{$i}) {
+			    			@if $i == 1 {
+			    				animation-delay: 10s + 0.4s, 12s + 1.2s;
+			    			} @else if $i == 2 {
+			    				animation-delay: 10s + 0.4s, 12s + 1.2s;
+			    			}
+			    			@else {
+			    				animation-delay: 10s + 0.4s * ($i - 1), 12s + 0.4s*(6 - $i);
+			    			}
+			    			
+			    		}
+			    	}
+			    }
 
-@keyframes blink {
- 	0%,	5%,  100% {
-    	opacity:1;
-  	}
-   	2.5% {
-  		opacity: 0;
-  	}
+			}
+		}
+	}
 }
-
-
 @for $i from 1 through 4 {
 	.container {
 		.text {
@@ -54,21 +66,29 @@
 				span {
 					&:first-child {
 				        p:nth-child(#{$i}) {
-				            animation-delay: 0.4s*($i) ;
+				            animation-delay: 0.4s*($i), 6s + 0.4s*(5 - $i);
 				        }
 			    	}
 			    	&:last-child {
 			    		p:nth-child(#{$i}) {
-			    			animation-delay: 2s + 0.4s*($i);
+			    			animation-delay: 2s + 0.4s*($i), 4s + 0.4s*(5 - $i);
 			    		}
 			    		
 			    	}
 			    }
-
 			}
-			
+			&__second {
+				span {
+					&:first-child {
+				        p:nth-child(#{$i}) {
+				            animation-delay: 8s + 0.4s*($i), 14s + 0.4s*(5 - $i);
+				        }
+			    	}
+			    }
+			}
 	    } 
     }
+    
     @keyframes letter {
 		0%, 50%, 100% {
 			visibility: hidden;
@@ -76,8 +96,18 @@
 	    12.5% {
 	   	 	visibility: visible; 
 		}
-		
-	}  
+
+	} 
+}
+@keyframes clear {
+ 	0%, 50%{
+ 		opacity:0;
+ 	}
+
+ 	51%, 100% {
+    	opacity:1;
+  	}
+   	
 }
 
 @each $n in 1, 2, 3, 4 {
@@ -111,12 +141,12 @@
 		   
 		   opacity: 1;
 		}
-		50% {
+		37.5% {
 			transform: none;
-		    opacity: 0;
-		    
+			opacity: 0;
 		}
-		37.5%, 62.5%, 100% {
+		
+		50%, 62.5%, 100% {
 			opacity: 0;
 		}
 	}

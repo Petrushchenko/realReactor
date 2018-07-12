@@ -44,8 +44,12 @@ main {
 	flex-direction:row;
 	position:absolute;
 	left: 3rem;
+
 }
 %anim-letter {
+	visibility:hidden;
+	display: inline-block;
+	margin: 0;
 	animation-name: letter, clear;
 	animation-timing-function: linear, linear;
 	animation-iteration-count: infinite, infinite;
@@ -80,14 +84,15 @@ main {
 	overflow: hidden;
 	.text {
 		font-size: 3rem;
-		width: auto;
-		padding-bottom:0.7rem;
+		width: 60%;
+		padding-bottom:1rem;
 		color: darken($white-color, 20%);
 		display: flex;
 		flex-direction:row;
 		flex-wrap: nowrap;
 		border-bottom: 0.1rem solid darken($white-color, 50%);
 		position: relative;
+		left: 10%;
 		&__icon {		
 		    width: 0;
 		    height: 2.7rem;
@@ -98,14 +103,14 @@ main {
 			position: absolute;
 			height: 3rem;
 			width:0.2rem;
-			background-color: darken($white-color, 50%);
+			background-color: darken($white-color, 65%);
 			left: 3rem;
-			animation-name: cursor, blink;
-			animation-timing-function: steps(1, end), linear;
-			animation-duration: 4s, 8s;
-			animation-direction: alternate, alternate;;
-			animation-iteration-count: infinite, infinite;
-			animation-delay: 0s, 3.5s;
+			animation-name: cursor;
+			animation-timing-function: steps(1, end);
+			animation-duration: 4s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-delay: 0s;
 		}
 		&__first {
 			@extend %string;
@@ -114,6 +119,7 @@ main {
 				flex-direction:row;
 				flex-wrap: nowrap;
 				&:first-child {
+					margin-right: 2rem;
 					p {
 						@extend %anim-letter;
 					}	
@@ -127,16 +133,30 @@ main {
 
 		}
 		&__second {
-			/*visibility:hidden;*/
+			@extend %string;
+			span {
+				display: flex;
+				flex-direction:row;
+				flex-wrap: nowrap;
+				&:first-child {
+					margin-right: 2rem;
+					p {
+						@extend %anim-letter;
+					}	
+				}
+				&:last-child {
+					margin-left: 0.8rem;
+					p {
+						@extend %anim-letter;
+						&:nth-of-type(3) {
+							transform: scaleX(0.8);
+						}
+						
+					}	
+				}
+			}
 		}
-		p {
-			visibility:hidden;
-			display: inline-block;
-			margin: 0;
-			&:nth-of-type(4) {
-				margin-right: 2rem;
-			}	
-		}
+		
 	}
 	.images {
 		max-width: 60rem;
@@ -147,14 +167,14 @@ main {
 		justify-content: center;
 		padding-top:2rem;
 		margin-top:3rem;
-		overflow:hidden;
 		& > div {
 			display:flex;
 			flex-wrap: nowrap;
 			position:relative;
-			height: 40rem;
+			z-index:0;
+			height: 48rem;
 			&:last-child {
-				margin-top: -40rem;
+				margin-top: -48rem;
 			}
 		}
 		@for $j from 1 through 8 {
@@ -174,7 +194,7 @@ main {
 				background-size: 100% auto;
 				position:absolute;
 				left: calc((100% - 39rem)/ 2 + 13rem);
-				top: 19rem;
+				top: 18rem;
 			}
 		}
 		@each $n in 2, 6 {

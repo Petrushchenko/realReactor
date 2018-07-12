@@ -1,0 +1,18 @@
+@media (max-width: 710px) {
+	.container {
+		width: 80%;
+		left: 50%;
+		transform: translateX(-50%);
+		.text {
+			width: 45%;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.container {
+		width: 100%;
+		.images {
+			width: 100%;
+		}
+	}
+}
